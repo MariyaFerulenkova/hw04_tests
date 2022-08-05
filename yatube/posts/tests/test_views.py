@@ -79,12 +79,8 @@ class PostsPagesTests(TestCase):
         """Шаблон index сформирован с правильным контекстом."""
         response = self.guest_client.get(reverse('posts:index'))
         self.assertEqual(len(response.context['page_obj']), 2)
-
-        first_object = response.context['page_obj'][0]
-        post_author_0 = first_object.author.username
-        post_text_0 = first_object.text
-        self.assertEqual(post_author_0, 'auth')
-        self.assertEqual(post_text_0, 'Тестовый пост')
+        self.assertContains(response, self.post.text)
+        self.assertContains(response, self.post_with_group.text)
 
     def test_group_list_show_correct_context(self):
         """Шаблон group_list сформирован с правильным контекстом."""
