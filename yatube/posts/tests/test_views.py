@@ -73,7 +73,7 @@ class PostsPagesTests(TestCase):
                 response = self.author_client.get(reverse_name)
                 self.assertTemplateUsed(response, template)
 
-# в шаблон передан правильный контекст + дополнительные проверки
+# в шаблон передан правильный контекст
 
     def test_index_page_show_correct_context(self):
         """Шаблон index сформирован с правильным контекстом."""
@@ -85,10 +85,6 @@ class PostsPagesTests(TestCase):
         post_text_0 = first_object.text
         self.assertEqual(post_author_0, 'auth')
         self.assertEqual(post_text_0, 'Тестовый пост')
-
-        second_object = response.context['page_obj'][1]
-        post_group_1 = second_object.group.title
-        self.assertEqual(post_group_1, 'Тестовая группа')
 
     def test_group_list_show_correct_context(self):
         """Шаблон group_list сформирован с правильным контекстом."""
@@ -164,6 +160,22 @@ class PostsPagesTests(TestCase):
                     response.context.get('form').fields.get(value)
                 )
                 self.assertIsInstance(form_field, expected)
+
+# дополнительные проверки
+
+    def test_new_post_with_group_checking(self):
+        """При создании поста с группой, пост отображается
+        на главной странице, на странице группы, в профайле
+        пользователя."""
+        reverse_names = (
+            reverse('posts:index'),
+            reverse('posts:group_list', kwargs={'slug': 'test-slug'}),
+            reverse('posts:profile', kwargs={'username': 'auth'})
+        )
+        for reverse_name in reverse_names:
+            with self.subTest(reverse_name=reverse_name):
+                response = self.guest_client.get(reverse_name)
+                self.assertContains(response, self.post_with_group.text)
 
     def test_post_with_group_not_in_new_group(self):
         """Post_with_group не попал в группу, для которой
