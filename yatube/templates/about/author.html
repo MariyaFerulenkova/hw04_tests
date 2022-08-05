@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Об авторе проекта{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/styles.css'%}">
+  <div class="container py-5">
+    <div class="row">
+      <aside class="col-12 col-md-3">
+        <img src="{% static 'img/photo.jpg' %}" width="148" height="350">
+      </aside>
+      <aside class="col-12 col-md-9">
+        <h3>Привет! Я Мария, начинающий программист</h3>
+        <p>
+          Обучаюсь на backend-разработчика Python в замечательном "ЯндексПрактикум"<br> 
+          Мои начинания можно посмотреть здесь: 
+          <div class="social github">
+            <a href="https://github.com/MariyaFerulenkova" target="_blank"><i class="fa fa-github fa-2x"></i></a>
+          </div>
+          <br><br><br>
+          До того как я начала изучать программирование, я разрабатывала 
+          интересные проекты по мониторингу инженерных систем и конструкций 
+          на уникальных и технически сложных зданиях, а еще занималась автоматизацией холодильных установок.<br>
+          Сначала программирование для меня было своего рода хобби, я начала изучение основ
+          программирования на языках С++, Python, решение задач по программированию приносило удовольствие, 
+          отвлечение от повседневных дел. В какой-то момент я поняла что это занятие должно приносить 
+          не только удовольствие, но и доход. <br>
+          Так я оказалась на курсах от "ЯндексПрактикум".<br><br>
+          А здесь немного из моей повседневной жизни: 
+          <div class="social instagram">
+            <a href="https://www.instagram.com/maruska_77" target="_blank"><i class="fa fa-instagram fa-2x"></i></a>
+          </div>
+        </p>
+      </aside>
+    </div>
+  </div>
+{% endblock %}
