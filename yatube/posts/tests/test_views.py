@@ -118,10 +118,6 @@ class PostsPagesTests(TestCase):
         self.assertEqual(response.context['posts_qty'], 2)
         self.assertEqual(len(response.context['page_obj']), 2)
 
-        second_object = response.context['page_obj'][1]
-        post_group_1 = second_object.group.title
-        self.assertEqual(post_group_1, 'Тестовая группа')
-
     def test_post_detail_show_correct_context(self):
         """Шаблон post_detail сформирован с правильным контекстом."""
         response = self.guest_client.get(

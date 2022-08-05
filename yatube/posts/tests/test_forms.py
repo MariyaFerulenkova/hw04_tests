@@ -91,14 +91,14 @@ class PostFormTests(TestCase):
     def test_labels(self):
         text_label = PostFormTests.form.fields['text'].label
         group_label = PostFormTests.form.fields['group'].label
-        self.assertEquals(text_label, 'Текст поста')
-        self.assertEquals(group_label, 'Группа')
+        self.assertEqual(text_label, 'Текст поста')
+        self.assertEqual(group_label, 'Группа')
 
     def test_help_texts(self):
         text_help_text = PostFormTests.form.fields['text'].help_text
         group_help_text = PostFormTests.form.fields['group'].help_text
-        self.assertEquals(text_help_text, 'Текст нового поста')
-        self.assertEquals(
+        self.assertEqual(text_help_text, 'Текст нового поста')
+        self.assertEqual(
             group_help_text,
             'Группа, к которой будет относиться пост'
         )
